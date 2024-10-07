@@ -14,11 +14,32 @@ function createGrid(size) {
       let divs = document.createElement("div");
       container.appendChild(divs);
       divs.style.height = `calc(100% / ${size})`;
-      divs.style.background = "lightgrey";
+      divs.style.background = "white";
       divs.style.border = "1px solid grey";
       divs.style.width = `calc(100% /${size})`;
+
+      divs.dataset.interactions = 0;
+
+
       divs.addEventListener("mouseover", () => {
-        divs.style.background = `${generateColor()}`;
+        let interactions = parseInt(divs.dataset.interactions);
+
+        if (interactions === 0) {
+          let randomColor = generateColor();
+          divs.style.backgroundColor= randomColor;
+          
+        } else if (interactions < 12){
+          let currentColor = divs.style.backgroundColor;
+          let [r, g, b] = currentColor.match(/\d+/g).map(Number);
+          
+          r = Math.floor(r - (r * 0.5));
+          g = Math.floor(g - (g * 0.5));
+          b = Math.floor(b - (b * 0.5));
+
+          divs.style.backgroundColor= `rgb(${r}, ${g}, ${b})`;
+        }
+        divs.dataset.interactions = interactions + 1;
+
       });
     }
   }
@@ -36,13 +57,10 @@ btn.addEventListener("click", () => {
 
 
 function generateColor() {
-  const letters =  '0123456789ABCDEF';
-  let color = '#';
+  const r = Math.floor(Math.random()*255);
+  const g = Math.floor(Math.random()*255);
+  const b = Math.floor(Math.random()*255);
 
-  for (let i=0; i<6; i++){
-    color += letters[Math.floor(Math.random()*16)];
-  }
-
-  return color;
+  return `rgb(${r},${g},${b})`;
 }
 
