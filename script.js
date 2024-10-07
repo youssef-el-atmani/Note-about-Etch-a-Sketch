@@ -5,6 +5,8 @@ let size;
 
 let widthSize = 100 / size;
 
+createGrid(10);
+
 function createGrid(size) {
 
   container.innerHTML='';
