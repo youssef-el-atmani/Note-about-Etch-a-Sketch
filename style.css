@@ -5,6 +5,17 @@
 
 .container{
     display: flex;
+    max-width: 1000px;
+    width: 90%;
+    height: 90vh;
+    margin: 20px auto;
     flex-wrap: wrap;
     clear: both;
+}
+
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
 }
