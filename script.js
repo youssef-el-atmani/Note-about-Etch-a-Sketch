@@ -1,5 +1,5 @@
 let container = document.querySelector(".container");
-let btn = document.querySelector(".btn");
+let btns = document.querySelectorAll(".btn");
 
 let size;
 
@@ -28,13 +28,13 @@ function createGrid(size) {
           let randomColor = generateColor();
           divs.style.backgroundColor= randomColor;
           
-        } else if (interactions < 12){
+        } else if (interactions < 15){
           let currentColor = divs.style.backgroundColor;
           let [r, g, b] = currentColor.match(/\d+/g).map(Number);
           
-          r = Math.floor(r - (r * 0.5));
-          g = Math.floor(g - (g * 0.5));
-          b = Math.floor(b - (b * 0.5));
+          r = Math.floor(r - (r * 0.3));
+          g = Math.floor(g - (g * 0.3));
+          b = Math.floor(b - (b * 0.3));
 
           divs.style.backgroundColor= `rgb(${r}, ${g}, ${b})`;
         }
@@ -45,15 +45,18 @@ function createGrid(size) {
   }
 }
 
-btn.addEventListener("click", () => {
-  size = prompt("Digite o tamanho do grid (max 100)");
-  if (size > 100) {
-    size = 100;
-    createGrid(size);
-  } else {
-    createGrid(size);
-  }
-});
+btns.forEach((btn) =>{
+  btn.addEventListener("click", () => {
+    size = prompt("Digite o tamanho do grid (max 100)");
+    if (size > 100) {
+      size = 100;
+      createGrid(size);
+    } else {
+      createGrid(size);
+    }
+  });
+})
+
 
 
 function generateColor() {
