@@ -18,7 +18,7 @@ function createGrid(size) {
       divs.style.border = "1px solid grey";
       divs.style.width = `calc(100% /${size})`;
       divs.addEventListener("mouseover", () => {
-        divs.style.background = "blue";
+        divs.style.background = `${generateColor()}`;
       });
     }
   }
@@ -33,3 +33,16 @@ btn.addEventListener("click", () => {
     createGrid(size);
   }
 });
+
+
+function generateColor() {
+  const letters =  '0123456789ABCDEF';
+  let color = '#';
+
+  for (let i=0; i<6; i++){
+    color += letters[Math.floor(Math.random()*16)];
+  }
+
+  return color;
+}
+
