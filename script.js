@@ -14,6 +14,14 @@ function createGrid(size) {
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       let divs = document.createElement("div");
+
+      // I think it is better to append an element only when you done with it,
+      // For example if you have a a div that you have just created, and you want to change..
+      // .. its background color, what is best I think, is to change the background first, and just then ..
+      // Append it whereever you want
+      // Here is a link to a chatGpt that I've just created it : https://chatgpt.com/share/6704f8bf-b9d0-8011-9061-fc86d2b0224e
+      // And look for https://www.theodinproject.com/lessons/foundations-dom-manipulation-and-events#exercise
+          // Look for the hint
       container.appendChild(divs);
       divs.style.height = `calc(100% / ${size})`;
       divs.style.background = "white";
